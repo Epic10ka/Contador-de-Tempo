@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Copa do Mundo 2026</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;700&display=swap');
+
+        :root {
+            --cor-de-fundo: #121014; /* preto enxergável, bem escuro */
+            --roxo-escuro: #4B0082; /* roxo escuro */
+            --rosa: #FF69B4; /* rosa vibrante */
+            --branco: #FFFFFF; /* branco puro */
+            --botao-ativo: var(--roxo-escuro);
+            --botao-inativo: rgba(75, 0, 130, 0.5); /* roxo semitransparente */
+            --texto-fundo: rgba(75, 0, 130, 0.25);
+        }
+
+        body {
+            background-color: var(--cor-de-fundo);
+            color: var(--branco);
+            font-family: 'Chakra Petch', sans-serif;
+        }
+
+        .conteudo-principal {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        .titulo-principal {
+            text-align: left;
+            width: 100%;
+            font-size: 32px;
+        }
+
+        .titulo-principal span {
+            color: var(--rosa);
+        }
+
+        .botao {
+            font-family: 'Chakra Petch', sans-serif;
+            background-color: var(--botao-inativo);
+            color: var(--branco);
+            display: flex;
+            justify-content: center;
+            padding: 1em;
+            font-size: 18px;
+            align-items: center;
+            width: 100%;
+            border-bottom: 4px solid var(--botao-ativo);
+            border-left: 2px solid var(--botao-ativo);
+            border-right: 2px solid var(--botao-ativo);
+            border-top: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .botao:hover:not(.ativo) {
+            background-color: rgba(75, 0, 130, 0.7);
+        }
+
+        .botao:first-child {
+            border-radius: 40px 40px 0 0;
+        }
+
+        .botoes {
+            display: block;
+        }
+
+        .botao.ativo {
+            background-color: var(--botao-ativo);
+            border-bottom: 4px solid var(--rosa);
+        }
+
+        .abas-textos {
+            background-color: var(--texto-fundo);
+            padding: 40px;
+            border-radius: 0 0 40px 40px;
+            min-height: 320px;
+        }
+
+        .aba-conteudo.ativo {
+            display: block;
+        }
+
+        .aba-conteudo {
+            display: none;
+        }
+
+        .aba-conteudo-titulo-principal {
+            font-size: 28px;
+            text-align: center;
+            margin-bottom: 8px;
+        }
+
+        .aba-conteudo-titulo-secundario {
+            text-align: center;
+            color: var(--rosa);
+            text-transform: uppercase;
+            margin-top: 0;
+            margin-bottom: 16px;
+        }
+
+        .contador {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .contador-digito {
+            padding: 0 16px;
+            text-align: center;
+            min-width: 100px;
+        }
+
+        .contador-digito-numero {
+            font-size: 80px;
+            margin: 0;
+            font-weight: 700;
+        }
+
+        .contador-digito-texto {
+            color: var(--rosa);
+            font-size: 20px;
+            margin: 0;
+            font-weight: 600;
+        }
+
+        ul {
+            max-width: 400px;
+            margin: 0 auto;
+            padding-left: 20px;
+        }
+
+        ul li {
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+
+        p {
+            max-width: 600px;
+            margin: 0 auto 20px auto;
+            font-size: 18px;
+            text-align: center;
+        }
+
+        .logo-copa {
+            display: block;
+            margin: 20px auto 0 auto;
+            max-width: 280px;
+            width: 80%;
+            height: auto;
+        }
+
+        @media screen and (min-width: 768px) {
+            .botoes {
+                display: flex;
+            }
+
+            .botao:first-child {
+                border-radius: 40px 0 0 0;
+            }
+
+            .botao:last-child {
+                border-radius: 0 40px 0 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <section class="conteudo-principal">
+        <h2 class="titulo-principal">Copa do Mundo 2026<span>_</span></h2>
+        <div class="conteudo">
+            <div class="botoes">
+                <button class="botao ativo">Dias Restantes</button>
+                <button class="botao">Times Confirmados</button>
+                <button class="botao">Jogadores Convocados</button>
+                <button class="botao">Final da Copa</button>
+            </div>
+            <div class="abas-textos">
+                <div class="aba-conteudo ativo">
+                    <h3 class="aba-conteudo-titulo-principal">Dias Restantes para a Copa do Mundo</h3>
+                    <h4 class="aba-conteudo-titulo-secundario">Tempo até o início da Copa</h4>
+                    <div class="contador">
+                        <div class="contador-digito">
+                            <p class="contador-digito-numero" id="dias0"></p>
+                            <p class="contador-digito-texto">dias</p>
+                        </div>
+                        <div class="contador-digito">
+                            <p class="contador-digito-numero" id="horas0"></p>
+                            <p class="contador-digito-texto">horas</p>
+                        </div>
+                        <div class="contador-digito">
+                            <p class="contador-digito-numero" id="min0"></p>
+                            <p class="contador-digito-texto">min</p>
+                        </div>
+                        <div class="contador-digito">
+                            <p class="contador-digito-numero" id="seg0"></p>
+                            <p class="contador-digito-texto">seg</p>
+                        </div>
+                    </div>
+                    <img
+                        class="logo-copa"
+                        src="https://s2-ge.glbimg.com/RGU5LEYpvpcPRro8r9wxAEvmltU=/0x0:2048x2048/984x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_bc8228b6673f488aa253bbcb03c80ec5/internal_photos/bs/2023/q/Q/e3U1thRemgE9lEG0J4gQ/logo-fifa.jpg"
+                        alt="Logo Copa do Mundo 2026"
+                        loading="lazy"
+                    />
+                </div>
+                <div class="aba-conteudo">
+                    <h3 class="aba-conteudo-titulo-principal">Times Confirmados</h3>
+                    <h4 class="aba-conteudo-titulo-secundario">Lista de times que participarão</h4>
+                    <p>A seleção oficial de participantes ainda está sendo confirmada, mas espera-se que estas equipes estejam competindo:</p>
+                    <ul>
+                        <li>Estados Unidos (país sede)</li>
+                        <li>Canadá (país sede)</li>
+                        <li>México (país sede)</li>
+                        <li>Brasil</li>
+                        <li>Alemanha</li>
+                        <li>Argentina</li>
+                        <li>França</li>
+                        <li>Espanha</li>
+                        <li>Inglaterra</li>
+                        <li>Japão</li>
+                    </ul>
+                </div>
+                <div class="aba-conteudo">
+                    <h3 class="aba-conteudo-titulo-principal">Jogadores Convocados</h3>
+                    <h4 class="aba-conteudo-titulo-secundario">Possíveis astros da Copa</h4>
+                    <p>Alguns jogadores que provavelmente estarão na competição:</p>
+                    <ul>
+                        <li>Kylian Mbappé (França)</li>
+                        <li>Erling Haaland (Noruega)</li>
+                        <li>Neymar Jr. (Brasil)</li>
+                        <li>Harry Kane (Inglaterra)</li>
+                        <li>Lionel Messi (Argentina)</li>
+                    </ul>
+                </div>
+                <div class="aba-conteudo">
+                    <h3 class="aba-conteudo-titulo-principal">Final da Copa</h3>
+                    <h4 class="aba-conteudo-titulo-secundario">Tempo até o último jogo e infos da final</h4>
+                    <p>A final da Copa do Mundo de 2026 será em 18 de julho de 2026, no Estádio MetLife, em East Rutherford, Estados Unidos.</p>
+                    <div class="contador">
+                        <div class="contador-digito">
+                            <p class="contador-digito-numero" id="dias3"></p>
+                            <p class="contador-digito-texto">dias</p>
+                        </div>
+                        <div class="contador-digito">
+                            <p class="contador-digito-numero" id="horas3"></p>
+                            <p class="contador-digito-texto">horas</p>
+                        </div>
+                        <div class="contador-digito">
+                            <p class="contador-digito-numero" id="min3"></p>
+                            <p class="contador-digito-texto">min</p>
+                        </div>
+                        <div class="contador-digito">
+                            <p class="contador-digito-numero" id="seg3"></p>
+                            <p class="contador-digito-texto">seg</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script>
+        const botoes = document.querySelectorAll(".botao");
+        const abas = document.querySelectorAll(".aba-conteudo");
+
+        botoes.forEach((botao, i) => {
+            botao.addEventListener("click", () => {
+                botoes.forEach(b => b.classList.remove("ativo"));
+                abas.forEach(a => a.classList.remove("ativo"));
+                botao.classList.add("ativo");
+                abas[i].classList.add("ativo");
+            });
+        });
+
+        const tempoInicioCopa = new Date("2026-06-08T00:00:00"); // Data inicio Copa
+        const tempoFinalCopa = new Date("2026-07-18T00:00:00"); // Data final copa
+
+        function calculaTempo(tempoObjetivo) {
+            const agora = new Date();
+            let diff = tempoObjetivo - agora;
+
+            if (diff <= 0) {
+                return [0, 0, 0, 0];
+            }
+
+            let segundos = Math.floor(diff / 1000);
+            let minutos = Math.floor(segundos / 60);
+            let horas = Math.floor(minutos / 60);
+            let dias = Math.floor(horas / 24);
+
+            segundos %= 60;
+            minutos %= 60;
+            horas %= 24;
+
+            return [dias, horas, minutos, segundos];
+        }
+
+        function atualizaCronometro() {
+            // Atualiza contador para início da copa
+            const [dias0, horas0, min0, seg0] = calculaTempo(tempoInicioCopa);
+            document.getElementById("dias0").textContent = dias0;
+            document.getElementById("horas0").textContent = horas0;
+            document.getElementById("min0").textContent = min0;
+            document.getElementById("seg0").textContent = seg0;
+
+            // Atualiza contador para final da copa na aba final
+            const [dias3, horas3, min3, seg3] = calculaTempo(tempoFinalCopa);
+            document.getElementById("dias3").textContent = dias3;
+            document.getElementById("horas3").textContent = horas3;
+            document.getElementById("min3").textContent = min3;
+            document.getElementById("seg3").textContent = seg3;
+        }
+
+        atualizaCronometro();
+        setInterval(atualizaCronometro, 1000);
+    </script>
+</body>
+
+</html>
+
